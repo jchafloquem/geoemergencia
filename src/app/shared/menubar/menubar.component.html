@@ -1,0 +1,15 @@
+<div class="card">
+  <p-menubar [model]="items">
+      <ng-template pTemplate="start">
+          <img src="https://pportalgis.vivienda.gob.pe:8443/app_oeee/geovisor/images/logo.png" height="40" class="mr-2" />
+      </ng-template>
+      <ng-template pTemplate="end">
+        <p-button
+                  icon="pi pi-user"
+                  styleClass="p-button-rounded p-button-danger p-button-text"
+                  routerLink="../auth/login"
+        ></p-button>
+    </ng-template>
+  </p-menubar>
+</div>
+
