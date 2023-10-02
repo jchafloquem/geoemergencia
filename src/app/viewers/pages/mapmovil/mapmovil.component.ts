@@ -58,255 +58,92 @@ export class MapmovilComponent implements OnInit, OnDestroy {
       legendEnabled: false
     }); mapa.add(lotesCofopri)
     const appmovil = new FeatureLayer({
-      url: 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/Mapa_Validacion/MapServer/12',
+      url: 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/Mapa_Validacion/MapServer/1',
       title: 'VALIDACION EN CAMPO'
     }); mapa.add(appmovil);
-
-    const arregloCapas = [
+    const buscarCapas = [
       {
         layer: new FeatureLayer({
-          url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/Mapa_Validacion/MapServer/12",
+          url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/Mapa_Validacion/MapServer/1",
         }),
-        searchFields: ["ID_LOTE"],
-        displayField: "ID_LOTE",
+        searchFields: ["nro_ficha"],
+        displayField: "nro_ficha",
         exactMatch: false,
         outFields: ["*"],
-        name: "LOTE CATASTRAL",
-        placeholder: "Ejemplo: 4004064023",
-        maxResults: 6,
-        maxSuggestions: 6,
+        name: "N° DE FICHA",
+        placeholder: "FICHA: 0001",
+        maxResults: 5,
+        maxSuggestions: 5,
         suggestionsEnabled: true,
         minSuggestCharacters: 0,
-        zoomScale: 500,
+        zoomScale: 1000,
         popupTemplate: {
-          title: "LOTE CATASTRAL: {ID_LOTE}",
+          title: "N° DE FICHA: {nro_ficha}",
           content: [
             {
               type: "fields",
               fieldInfos: [
                 {
-                  fieldName: "ID_MZ",
-                  label: "<b><font color='#0C5EA3'>MANZANA CATASTRAL</font></b>",
+                  fieldName: "nombre_departamento",
+                  label: "<b><font color='#0C5EA3'>DEPARTAMENTO</font></b>",
                   visible: true,
                   stringFieldOption: "text-box",
                 },
                 {
-                  fieldName: "COD_LOT",
-                  label: "<b><font color='#0C5EA3'>LOTE CATASTRAL</font></b>",
+                  fieldName: "nombre_provincia",
+                  label: "<b><font color='#0C5EA3'>PROVINCIA</font></b>",
                   visible: true,
                   stringFieldOption: "text-box",
                 },
                 {
-                  fieldName: "NM_HAB_URB",
-                  label: "<b><font color='#0C5EA3'>HABILITACION URBANA</font></b>",
+                  fieldName: "nombre_distrito",
+                  label: "<b><font color='#0C5EA3'>DISTRITO</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+
+                {
+                  fieldName: "direccion",
+                  label: "<b><font color='#0C5EA3'>DIRECCION</font></b>",
                   visible: true,
                   stringFieldOption: "text-box",
                 },
                 {
-                  fieldName: "NRO_MZ",
-                  label: "<b><font color='#0C5EA3'>MANZANA URBANA</font></b>",
+                  fieldName: "localidad ",
+                  label: "<b><font color='#0C5EA3'>LOCALIDAD</font></b>",
                   visible: true,
                   stringFieldOption: "text-box",
                 },
                 {
-                  fieldName: "LOTE_URB",
-                  label: "<b><font color='#0C5EA3'>LOTE URBANO</font></b>",
+                  fieldName: "manzana",
+                  label: "<b><font color='#0C5EA3'>MANZANA</font></b>",
                   visible: true,
                   stringFieldOption: "text-box",
                 },
                 {
-                  fieldName: "TIPO_ZONIF",
-                  label: "<b><font color='#0C5EA3'>TIPO DE ZONIFICACION</font></b>",
+                  fieldName: "lote",
+                  label: "<b><font color='#0C5EA3'>LOTE</font></b>",
                   visible: true,
                   stringFieldOption: "text-box",
                 },
                 {
-                  fieldName: "DESC_ZONI",
-                  label: "<b><font color='#0C5EA3'>DESCRIPCION DE ZONIFICACION</font></b>",
-                  visible: true,
-                  stringFieldOption: "text-box",
-                },
-                {
-                  fieldName: "NMRO_ATN",
-                  label: "<b><font color='#0C5EA3'>AREA DE TRATAMIENTO NORMATIVO</font></b>",
-                  visible: true,
-                  stringFieldOption: "text-box",
-                },
-                {
-                  fieldName: "NMRO_ESTR",
-                  label: "<b><font color='#0C5EA3'>ESTRUCTURACION URBANA</font></b>",
-                  visible: true,
-                  stringFieldOption: "text-box",
-                },
-                {
-                  fieldName: "OBSERV",
+                  fieldName: "observaciones",
                   label: "<b><font color='#0C5EA3'>OBSERVACIONES</font></b>",
                   visible: true,
                   stringFieldOption: "text-box",
                 },
-              ],
-            },
-          ],
-        },
-      },
-      {
-        layer: new FeatureLayer({
-          url: "https://services9.arcgis.com/BhzEj2fuR83yc3d3/ArcGIS/rest/services/MapaGeoSURCO/FeatureServer/14",
-        }),
-        searchFields: ["NOM_VIA", "COD_VIA"],
-        displayField: "NOM_VIA",
-        exactMatch: false,
-        outFields: ["*"],
-        name: "NOMBRE AV, CALLE, JIRON, PASAJE / COD. VIA",
-        placeholder: "Ejemplo: ISABEL",
-        maxResults: 6,
-        maxSuggestions: 6,
-        suggestionsEnabled: true,
-        minSuggestCharacters: 0,
-        zoomScale: 1000,
-        popupTemplate: {
-          title: "NOMBRE: {NOM_VIA}",
-          content: [
-            {
-              type: "fields",
-              fieldInfos: [
                 {
-                  fieldName: "NOM_VIA",
-                  label: "<b><font color='#0C5EA3'>NOMBRE DE LA VIA</font></b>",
+                  fieldName: "fecha",
+                  label: "<b><font color='#0C5EA3'>FECHA DE VALIDACION</font></b>",
                   visible: true,
                   stringFieldOption: "text-box",
                 },
-                {
-                  fieldName: "COD_VIA",
-                  label: "<b><font color='#0C5EA3'>CODIGO DE VIA</font></b>",
-                  visible: true,
-                  stringFieldOption: "text-box",
-                },
-              ],
-            },
-          ],
-        },
-      },
-      {
-        layer: new FeatureLayer({
-          url: "https://services9.arcgis.com/BhzEj2fuR83yc3d3/ArcGIS/rest/services/MapaGeoSURCO/FeatureServer/26",
-        }),
-        searchFields: ["N_HAB_URB"],
-        displayField: "N_HAB_URB",
-        exactMatch: false,
-        outFields: ["*"],
-        name: "NOMBRE HAB. URBANA",
-        placeholder: "Ejemplo: CAPULLANA",
-        maxResults: 6,
-        maxSuggestions: 6,
-        suggestionsEnabled: true,
-        minSuggestCharacters: 0,
-        zoomScale: 5000,
-        popupTemplate: {
-          title: "NOMBRE: {N_HAB_URB}",
-          content: [
-            {
-              type: "fields",
-              fieldInfos: [
-                {
-                  fieldName: "COD_H_URB",
-                  label: "<b><font color='#0C5EA3'>CODIGO DE HABILITACION URBANA</font></b>",
-                  visible: true,
-                  stringFieldOption: "text-box",
-                },
-                {
-                  fieldName: "GRUPO_URB",
-                  label: "<b><font color='#0C5EA3'>TIPO DE HABILITACION URBANA</font></b>",
-                  visible: true,
-                  stringFieldOption: "text-box",
-                },
-                {
-                  fieldName: "RES_H_URB",
-                  label: "<b><font color='#0C5EA3'>RESOLUCION DE HABILITACION URBANA</font></b>",
-                  visible: true,
-                  stringFieldOption: "text-box",
-                },
-                {
-                  fieldName: "PLN_H_URB",
-                  label: "<b><font color='#0C5EA3'>PLANO DE HABILITACION URBANA</font></b>",
-                  visible: true,
-                  stringFieldOption: "text-box",
-                },
-                {
-                  fieldName: "ESTAD",
-                  label: "<b><font color='#0C5EA3'>ESTADO DE HABILITACION URBANA</font></b>",
-                  visible: true,
-                  stringFieldOption: "text-box",
-                },
-                {
-                  fieldName: "OBSERV",
-                  label: "<b><font color='#0C5EA3'>OBSERVACIONES DE HABILITACION URBANA</font></b>",
-                  visible: true,
-                  stringFieldOption: "text-box",
-                },
-              ],
-            },
-          ],
-        },
-      },
-      {
-        layer: new FeatureLayer({
-          url: "https://services9.arcgis.com/BhzEj2fuR83yc3d3/ArcGIS/rest/services/MapaGeoSURCO/FeatureServer/15",
-        }),
-        searchFields: ["NOM_PARQUE"],
-        displayField: "NOM_PARQUE",
-        exactMatch: false,
-        outFields: ["*"],
-        name: "NOMBRE DEL PARQUE",
-        placeholder: "Ejemplo: EL SERENO",
-        maxResults: 6,
-        maxSuggestions: 6,
-        suggestionsEnabled: true,
-        minSuggestCharacters: 0,
-        zoomScale: 1000,
-        popupTemplate: {
-          title: "NOMBRE: {NOM_PARQUE}",
-          content: [
-            {
-              type: "fields",
-              fieldInfos: [
-                {
-                  fieldName: "NOM_COMPLE",
-                  label: "<b><font color='#0C5EA3'>NOMBRE DEL PARQUE</font></b>",
-                  visible: true,
-                  stringFieldOption: "text-box",
-                },
-                {
-                  fieldName: "ID_LOTE",
-                  label: "<b><font color='#0C5EA3'>CODIGO LOTE DEL PARQUE</font></b>",
-                  visible: true,
-                  stringFieldOption: "text-box",
-                },
-                {
-                  fieldName: "PERIM",
-                  label: "<b><font color='#0C5EA3'>PERIMETRO (m)</font></b>",
-                  overwriteActions: true,
-                  format: {
-                    digitSeparator: true, // Uses a comma separator in numbers >999
-                    places: 2 // Sets the number of decimal places to 0 and rounds up
-                  }
-                },
-                {
-                  fieldName: "AREA",
-                  label: "<b><font color='#0C5EA3'>AREA (m²)</font></b>",
-                  format: {
-                    digitSeparator: true, // Uses a comma separator in numbers >999
-                    places: 2 // Sets the number of decimal places to 0 and rounds up
-                  }
-                },
-
               ],
             },
           ],
         },
       },
     ]
-
     //Cargado del mapa
     const view = new MapView({
       container: container,
@@ -318,6 +155,12 @@ export class MapmovilComponent implements OnInit, OnDestroy {
       padding: { top: 0 },
       ui: { components: [] },
     });
+    const buscarData = new Search({
+      view: view,
+      sources: buscarCapas,
+      allPlaceholder: "N° FICHA",
+      includeDefaultSources: true,
+    }); view.ui.add(buscarData, { position: "top-right" });
     //Boton de Inicio de mapa (1)
     const homeBtn = new Home({ view: view }); view.ui.add(homeBtn, 'top-right');
     //Boton de acercar y alejar (2)

@@ -6,18 +6,22 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
+import { HomeComponent } from './pages/home/home.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    LayoutPageComponent
+    LayoutPageComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    PrimeNgModule
+    PrimeNgModule,
+    SharedModule
   ]
 })
 export class AuthModule { }
