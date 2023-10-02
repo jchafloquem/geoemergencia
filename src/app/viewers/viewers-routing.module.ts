@@ -14,14 +14,14 @@ const routes: Routes = [
   {
     path: '', component: LayoutPageComponent,
     children: [
-      { path: 'MapMovil', component: MapmovilComponent },
-      { path: 'MapMtv', component: MtvComponent },
-      { path: 'mapBAE', component: MapbaeComponent },
-      { path: 'mapBFH', component: MapbfhComponent },
-      { path: 'mapBPVVRS', component: MapbpvvrsComponent },
+      { path: 'GeoVisorMovil', component: MapmovilComponent },
+      { path: 'GeoVisorMTV', component: MtvComponent },
+      { path: 'GeoVisorBAE', component: MapbaeComponent },
+      { path: 'GeoVisorBFH', component: MapbfhComponent },
+      { path: 'GeoVisorBPVVRS', component: MapbpvvrsComponent },
       { path: 'Dashboard', component: DashboardComponent },
       { path: 'consulta', component: ConsultasComponent },
-      { path: '', redirectTo: 'MapMovil', pathMatch: 'full' }
+      { path: '', redirectTo: 'GeoVisorMovil', pathMatch: 'full' }
     ]
   }
 ];
