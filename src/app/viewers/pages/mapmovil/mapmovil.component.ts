@@ -13,6 +13,8 @@ import MapView from '@arcgis/core/views/MapView.js';
 import ScaleBar from '@arcgis/core/widgets/ScaleBar.js';
 import Zoom from '@arcgis/core/widgets/Zoom.js';
 import Search from "@arcgis/core/widgets/Search.js";
+import DistanceMeasurement2D from '@arcgis/core/widgets/DistanceMeasurement2D';
+import AreaMeasurement2D from '@arcgis/core/widgets/AreaMeasurement2D';
 
 
 @Component({
@@ -56,11 +58,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
       url: 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/FORMALIZACION/MapServer/9',
       title: 'LIMITE DE LOTE',
       legendEnabled: false
-    }); mapa.add(lotesCofopri)
-    const appmovil = new FeatureLayer({
-      url: 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/Mapa_Validacion/MapServer/1',
-      title: 'VALIDACION EN CAMPO'
-    }); mapa.add(appmovil);
+    }); mapa.add(lotesCofopri);
     const buscarCapas = [
       {
         layer: new FeatureLayer({
@@ -78,7 +76,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
         minSuggestCharacters: 0,
         zoomScale: 1000,
         popupTemplate: {
-          title: "N° DE FICHA: {nro_ficha}",
+          title: "FICHA N° {nro_ficha}",
           content: [
             {
               type: "fields",
@@ -138,12 +136,153 @@ export class MapmovilComponent implements OnInit, OnDestroy {
                   visible: true,
                   stringFieldOption: "text-box",
                 },
+                {
+                  fieldName: "longitud",
+                  label: "<b><font color='#0C5EA3'>LONGITUD</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+                {
+                  fieldName: "latitud",
+                  label: "<b><font color='#0C5EA3'>LATITUD</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
               ],
+
             },
-          ],
+            {
+              type: "media",
+              mediaInfos: [
+                {
+                  type: "image",
+                  value: {
+                    sourceURL: "{foto1}"
+                  }
+                },
+                {
+                  type: "image",
+                  value: {
+                    sourceURL: "{foto2}"
+                  }
+                },
+                {
+                  type: "image",
+                  value: {
+                    sourceURL: "{foto3}"
+                  }
+                }
+              ]
+            }
+          ]
         },
       },
     ]
+    const appmovil = new FeatureLayer({
+      url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/Mapa_Validacion/MapServer/1",
+      title: "VALIDACION EN CAMPO",
+      popupTemplate: {
+        title: "FICHA N° {nro_ficha}",
+        content: [
+          {
+            type: "fields",
+            fieldInfos: [
+              {
+                fieldName: "nombre_departamento",
+                label: "<b><font color='#0C5EA3'>DEPARTAMENTO</font></b>",
+                visible: true,
+                stringFieldOption: "text-box",
+              },
+              {
+                fieldName: "nombre_provincia",
+                label: "<b><font color='#0C5EA3'>PROVINCIA</font></b>",
+                visible: true,
+                stringFieldOption: "text-box",
+              },
+              {
+                fieldName: "nombre_distrito",
+                label: "<b><font color='#0C5EA3'>DISTRITO</font></b>",
+                visible: true,
+                stringFieldOption: "text-box",
+              },
+
+              {
+                fieldName: "direccion",
+                label: "<b><font color='#0C5EA3'>DIRECCION</font></b>",
+                visible: true,
+                stringFieldOption: "text-box",
+              },
+              {
+                fieldName: "localidad ",
+                label: "<b><font color='#0C5EA3'>LOCALIDAD</font></b>",
+                visible: true,
+                stringFieldOption: "text-box",
+              },
+              {
+                fieldName: "manzana",
+                label: "<b><font color='#0C5EA3'>MANZANA</font></b>",
+                visible: true,
+                stringFieldOption: "text-box",
+              },
+              {
+                fieldName: "lote",
+                label: "<b><font color='#0C5EA3'>LOTE</font></b>",
+                visible: true,
+                stringFieldOption: "text-box",
+              },
+              {
+                fieldName: "observaciones",
+                label: "<b><font color='#0C5EA3'>OBSERVACIONES</font></b>",
+                visible: true,
+                stringFieldOption: "text-box",
+              },
+              {
+                fieldName: "fecha",
+                label: "<b><font color='#0C5EA3'>FECHA DE VALIDACION</font></b>",
+                visible: true,
+                stringFieldOption: "text-box",
+              },
+              {
+                fieldName: "longitud",
+                label: "<b><font color='#0C5EA3'>LONGITUD</font></b>",
+                visible: true,
+                stringFieldOption: "text-box",
+              },
+              {
+                fieldName: "latitud",
+                label: "<b><font color='#0C5EA3'>LATITUD</font></b>",
+                visible: true,
+                stringFieldOption: "text-box",
+              },
+            ],
+
+          },
+          {
+            type: "media",
+            mediaInfos: [
+              {
+                type: "image",
+                value: {
+                  sourceURL: "{foto1}"
+                }
+              },
+              {
+                type: "image",
+                value: {
+                  sourceURL: "{foto2}"
+                }
+              },
+              {
+                type: "image",
+                value: {
+                  sourceURL: "{foto3}"
+                }
+              }
+            ]
+          }
+        ]
+      },
+    }); mapa.add(appmovil);
     //Cargado del mapa
     const view = new MapView({
       container: container,
@@ -158,8 +297,8 @@ export class MapmovilComponent implements OnInit, OnDestroy {
     const buscarData = new Search({
       view: view,
       sources: buscarCapas,
-      allPlaceholder: "N° FICHA",
-      includeDefaultSources: true,
+      allPlaceholder: "BUSCAR",
+      includeDefaultSources: false,
     }); view.ui.add(buscarData, { position: "top-right" });
     //Boton de Inicio de mapa (1)
     const homeBtn = new Home({ view: view }); view.ui.add(homeBtn, 'top-right');
@@ -182,7 +321,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
       view: view,
       expandTooltip: 'LEYENDA',
       content: leyenda,
-    }); view.ui.add(leyendaExpand, { position: 'top-right' });
+    }); view.ui.add(leyendaExpand, { position: 'bottom-right' });
     //Funcion de coordenadas (6)
     const ccoordenadas = new CoordinateConversion({ view: view }); view.ui.add(ccoordenadas, { position: 'bottom-left' });
     //Funcion de escala (7)
@@ -195,11 +334,15 @@ export class MapmovilComponent implements OnInit, OnDestroy {
       expandTooltip: 'CAPAS',
       content: controlCapas,
     }); view.ui.add(capasExpand, { position: 'top-left' });
+    //Funcion de medidas
+    const distanciaWidget = new DistanceMeasurement2D({ view: view });
+    const distanciaExpand = new Expand({ expandIconClass: "esri-icon-measure-line", view: view, expandTooltip: "MEDIR DISTANCIA", content: distanciaWidget }); view.ui.add(distanciaExpand, { position: "top-right" });
+    const areaWidget = new AreaMeasurement2D({ view: view });
+    const areaExpand = new Expand({ expandIconClass: "esri-icon-measure-area", view: view, expandTooltip: "MEDIR AREA", content: areaWidget }); view.ui.add(areaExpand, { position: "top-right" });
 
     this.vista = view;
     return this.vista.when();
   }
-
   ngOnInit(): any {
     this.initializeMap().then(() => { });
   }

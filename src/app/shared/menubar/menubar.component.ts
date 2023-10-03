@@ -13,39 +13,39 @@ export class MenubarComponent {
   ngOnInit() {
     this.items = [
       {
-        label: 'GeoVisores',
+        label: 'Geo VISORES',
         icon: 'pi pi-fw pi-map',
         items: [
           {
-            label: 'Validacion en campo (Movil)',
+            label: 'VALIDACION EN CAMPO (MOVIL)',
             icon: 'pi pi-fw pi-map-marker',
-            routerLink: 'MapMovil'
+            routerLink: 'GeoVisorMovil'
           },
           {
             label: 'Modulos Temporales de Vivienda',
             icon: 'pi pi-fw pi-map-marker',
-            routerLink: 'MapMtv'
+            routerLink: 'GeoVisorMTV'
           },
           {
             label: 'Bono de Atencion de Emergencias (BAE)',
             icon: 'pi pi-fw pi-map-marker',
-            routerLink: 'mapBAE'
+            routerLink: 'GeoVisorBAE'
           },
           {
             label: 'Bono Familiar Habitacional (BFH)',
             icon: 'pi pi-fw pi-map-marker',
-            routerLink: 'mapBFH'
+            routerLink: 'GeoVisorBFH'
           },
           {
             label: 'Bono de Proteccion de Vivienda Vulnerables a los Riesgos Sismicos (BPVVRS)',
             icon: 'pi pi-fw pi-map-marker',
-            routerLink: 'mapBPVVRS'
+            routerLink: 'GeoVisorBPVVRS'
           },
 
         ]
       },
       {
-        label: 'Consultas',
+        label: 'CONSULTAS',
         icon: 'pi pi-fw pi-search',
         items: [
           {
@@ -64,7 +64,7 @@ export class MenubarComponent {
         ]
       },
       {
-        label: 'Dashboard',
+        label: 'DASHBOARD',
         icon: 'pi pi-fw pi-chart-pie',
         items: [
           {
