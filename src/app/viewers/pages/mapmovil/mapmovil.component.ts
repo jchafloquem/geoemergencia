@@ -15,7 +15,7 @@ import Zoom from '@arcgis/core/widgets/Zoom.js';
 import Search from "@arcgis/core/widgets/Search.js";
 import DistanceMeasurement2D from '@arcgis/core/widgets/DistanceMeasurement2D';
 import AreaMeasurement2D from '@arcgis/core/widgets/AreaMeasurement2D';
-
+import * as query from "@arcgis/core/rest/query.js";
 
 @Component({
   selector: 'app-mapmovil',
@@ -28,6 +28,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
   initializeMap(): Promise<any> {
     const container = this.mapViewEl.nativeElement;
     const mapa = new Map({ basemap: "satellite" });
+    const validarCampo = 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/Mapa_Validacion/MapServer/1';
     //Cargado de capas
     const limDistrito = new FeatureLayer({
       url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/2",
@@ -62,7 +63,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
     const buscarCapas = [
       {
         layer: new FeatureLayer({
-          url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/Mapa_Validacion/MapServer/1",
+          url: validarCampo,
         }),
         searchFields: ["nro_ficha"],
         displayField: "nro_ficha",
@@ -179,7 +180,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
       },
     ]
     const appmovil = new FeatureLayer({
-      url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/Mapa_Validacion/MapServer/1",
+      url: validarCampo,
       title: "VALIDACION EN CAMPO",
       popupTemplate: {
         title: "FICHA N° {nro_ficha}",
@@ -339,6 +340,8 @@ export class MapmovilComponent implements OnInit, OnDestroy {
     const distanciaExpand = new Expand({ expandIconClass: "esri-icon-measure-line", view: view, expandTooltip: "MEDIR DISTANCIA", content: distanciaWidget }); view.ui.add(distanciaExpand, { position: "top-right" });
     const areaWidget = new AreaMeasurement2D({ view: view });
     const areaExpand = new Expand({ expandIconClass: "esri-icon-measure-area", view: view, expandTooltip: "MEDIR AREA", content: areaWidget }); view.ui.add(areaExpand, { position: "top-right" });
+
+  
 
     this.vista = view;
     return this.vista.when();
