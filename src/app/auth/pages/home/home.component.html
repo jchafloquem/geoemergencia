@@ -1,16 +1,36 @@
-
-<div class="grid grid-nogutter surface-section text-800">
-  <div class="col-12 md:col-6 p-6 text-center md:text-left flex align-items-center ">
-      <section>
-          <span class="block text-6xl font-bold mb-1">Create the screens</span>
-          <div class="text-6xl text-primary font-bold mb-3">your visitors deserve to see</div>
-          <p class="mt-0 mb-4 text-700 line-height-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-
-          <button pButton pRipple label="Learn More" type="button" class="mr-3 p-button-raised"></button>
-          <button pButton pRipple label="Live Demo" type="button" class="p-button-outlined"></button>
-      </section>
+<div class="card">
+  <p-menubar>
+    <ng-template pTemplate="start">
+      <img
+        src="https://pportalgis.vivienda.gob.pe:8443/app_oeee/geovisor/images/logo.png"
+        alt="Image"
+        height="50"
+        class="mb-1"
+      />
+    </ng-template>
+  </p-menubar>
+</div>
+<div class="container">
+  <div class="card">
+    <img src="assets/images/portada/citv.jpg" />
+    <h4>BONO DE ATENCION DE EMERGENCIAS</h4>
+    <button
+      pButton
+      pRipple
+      label="Ingresar sin usuario"
+      icon="pi pi-map"
+      class="w-full"
+      routerLink="/viewers/GeoVisorMovil"
+    ></button>
   </div>
-  <div class="col-12 md:col-6 overflow-hidden">
-      <img src="assets/images/blocks/hero/hero-1.png" alt="Image" class="md:ml-auto block md:h-full" style="clip-path: polygon(8% 0, 100% 0%, 100% 100%, 0 100%)">
+  <div class="card">
+    <img src="assets/images/portada/bfh.jpg" />
+    <h4>BONO FAMILIAR HABITACIONAL</h4>
+    <a href="#">Ingresar</a>
+  </div>
+  <div class="card">
+    <img src="assets/images/portada/bpvvrs.jpg" />
+    <h4>BONO DE PROTECCION DE VIVIENDAS VULNERABLES A LOS RIESGOS SISMICOS</h4>
+    <a href="#">Ingresar</a>
   </div>
 </div>

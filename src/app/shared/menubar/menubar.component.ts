@@ -17,7 +17,7 @@ export class MenubarComponent {
         icon: 'pi pi-fw pi-map',
         items: [
           {
-            label: 'VALIDACION EN CAMPO (MOVIL)',
+            label: 'Validacion (MOVIL)',
             icon: 'pi pi-fw pi-map-marker',
             routerLink: 'GeoVisorMovil'
           },

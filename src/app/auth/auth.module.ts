@@ -8,6 +8,8 @@ import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 import { HomeComponent } from './pages/home/home.component';
 import { SharedModule } from '../shared/shared.module';
+import { MaterialModule } from '../material/material.module';
+
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     AuthRoutingModule,
     PrimeNgModule,
+    MaterialModule,
     SharedModule
   ]
 })
