@@ -1,36 +1,58 @@
-<div class="card">
-  <p-menubar>
-    <ng-template pTemplate="start">
-      <img
-        src="https://pportalgis.vivienda.gob.pe:8443/app_oeee/geovisor/images/logo.png"
-        alt="Image"
-        height="50"
-        class="mb-1"
-      />
-    </ng-template>
-  </p-menubar>
-</div>
+<!-- Menu de la Portada -->
+<p-menubar>
+  <ng-template pTemplate="start">
+    <img src="https://pportalgis.vivienda.gob.pe:8443/app_oeee/geovisor/images/logo.png" alt="Image" height="50"
+      class="mb-1" />
+  </ng-template>
+</p-menubar>
+<!-- Tarjetas de acceso a los Visores -->
 <div class="container">
   <div class="card">
-    <img src="assets/images/portada/citv.jpg" />
-    <h4>BONO DE ATENCION DE EMERGENCIAS</h4>
-    <button
-      pButton
-      pRipple
-      label="Ingresar sin usuario"
-      icon="pi pi-map"
-      class="w-full"
-      routerLink="/viewers/GeoVisorMovil"
-    ></button>
+    <img src="assets/images/portada/galleryvalidacion.png" />
+    <h3>VALIDACION EN CAMPO</h3>
+    <p>Valida en campo la información de los damnificados con viviendas colapsadas o inhabitables, en el plazo máximo de
+      quince días hábiles contados a partir de la recepción de los Formularios señalados en el numeral anterior; así
+      como, de la condición de las viviendas.Elabora la relación de potenciales beneficiarios del BAE.
+    </p>
+    <button pButton pRipple label="Ingresar" icon="pi pi-map" class="w-full"
+      routerLink="/viewers/GeoVisorMovil"></button>
   </div>
   <div class="card">
-    <img src="assets/images/portada/bfh.jpg" />
+    <img src="assets/images/portada/gallerybae.jpg" />
+    <h3>BONO DE ATENCION DE EMERGENCIAS</h3>
+    <p>Esta ayuda económica de S/ 500 se otorga para el arrendamiento de una vivienda en el departamento en el que se
+      encuentra la zona declarada en Estado de emergencia. Asimismo, se dará a los afectados con periodicidad mensual y
+      por un plazo máximo de hasta dos años.
+    </p>
+    <button pButton pRipple label="Ingresar" icon="pi pi-map" class="w-full"
+      routerLink="/viewers/GeoVisorMovil"></button>
+  </div>
+  <div class="card">
+    <img src="assets/images/portada/gallerymtv.jpeg" />
+    <h4>MODULOS TEMPORALES DE VIVIENDA</h4>
+    <p>El Ministerio de Vivienda, Construcción y Saneamiento (MVCS) adquirirá Módulos Temporales de Vivienda (MTV), que
+      permitirán atender a las familias afectadas o damnificadas en caso de peligro inminente de desastres, a
+      consecuencia del impacto de fenómenos naturales, en las localidades que cuenten con declaratoria de Estado de
+      Emergencia vigente.</p>
+    <button pButton pRipple label="Ingresar" icon="pi pi-map" class="w-full" routerLink="/viewers/GeoVisorMTV"></button>
+  </div>
+  <div class="card">
+    <img src="assets/images/portada/gallerybfh.jpg" />
     <h4>BONO FAMILIAR HABITACIONAL</h4>
-    <a href="#">Ingresar</a>
+    <p>Se trata de una ayuda económica que otorga el Estado a las familias por única vez, como complemento para
+      facilitar la adquisición, construcción y mejoramiento de una vivienda de interés social.</p>
+    <button pButton pRipple label="Ingresar" icon="pi pi-map" class="w-full" routerLink="/viewers/GeoVisorBFH"></button>
   </div>
   <div class="card">
-    <img src="assets/images/portada/bpvvrs.jpg" />
-    <h4>BONO DE PROTECCION DE VIVIENDAS VULNERABLES A LOS RIESGOS SISMICOS</h4>
-    <a href="#">Ingresar</a>
+    <img src="assets/images/portada/gallerybpvvrs.jpg" />
+    <h4>BONO DE REFORZAMIENTO</h4>
+    <p>El Bono Protección de Viviendas Vulnerables a los Riesgos Sísmicos (BPVVRS) creado por Ley 30191, cuyo nuevo
+      Reglamento Operativo R.M. 336-2018-VIVIENDA establece el procedimiento para la identificación y determinación de
+      las zonas a intervenir, así como, los procedimientos, requisitos y condiciones para el otorgamiento del BPVVRS.
+    </p>
+    <button pButton pRipple label="Ingresar" icon="pi pi-map" class="w-full"
+      routerLink="/viewers/GeoVisorBPVVRS"></button>
   </div>
+
+
 </div>

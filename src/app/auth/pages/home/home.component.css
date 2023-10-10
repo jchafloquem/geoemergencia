@@ -28,11 +28,13 @@ body {
 }
 .container .card {
   width: 330px;
-  height: 350px;
-  border-radius: 8px;
-  box-shadow: 0 2px 2px rgba(245, 243, 243, 0.959);
+  height: 500px;
+  border-radius: 15px;
+  box-shadow: 0 10px 10px rgba(245, 243, 243, 0.959);
   overflow: hidden;
   margin: 20px;
+  margin-top: 50px;
+  margin-bottom: 10px;
   text-align: center;
   transition: all 0.25s;
 
@@ -50,11 +52,16 @@ body {
 }
 .container .card p {
   padding: 0 1rem;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
 }
- .container .card a {
+.container .card a {
   font-weight: 500;
   text-decoration: none;
   color: #3498bd;
+}
+
+.container .card button{
+  margin-bottom: 0px;
+  
 }
