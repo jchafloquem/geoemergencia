@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 //libreria de ArcGIS
+import AreaMeasurement2D from '@arcgis/core/widgets/AreaMeasurement2D';
 import BasemapGallery from '@arcgis/core/widgets/BasemapGallery.js';
 import CoordinateConversion from '@arcgis/core/widgets/CoordinateConversion.js';
+import DistanceMeasurement2D from '@arcgis/core/widgets/DistanceMeasurement2D';
 import Expand from '@arcgis/core/widgets/Expand.js';
 import FeatureLayer from '@arcgis/core/layers/FeatureLayer.js';
 import Fullscreen from '@arcgis/core/widgets/Fullscreen.js';
@@ -11,11 +13,8 @@ import Legend from '@arcgis/core/widgets/Legend.js';
 import Map from '@arcgis/core/Map.js';
 import MapView from '@arcgis/core/views/MapView.js';
 import ScaleBar from '@arcgis/core/widgets/ScaleBar.js';
-import Zoom from '@arcgis/core/widgets/Zoom.js';
 import Search from "@arcgis/core/widgets/Search.js";
-import DistanceMeasurement2D from '@arcgis/core/widgets/DistanceMeasurement2D';
-import AreaMeasurement2D from '@arcgis/core/widgets/AreaMeasurement2D';
-import * as query from "@arcgis/core/rest/query.js";
+import Zoom from '@arcgis/core/widgets/Zoom.js';
 
 @Component({
   selector: 'app-mapmovil',
@@ -179,7 +178,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
         },
       },
     ]
-    const appmovil = new FeatureLayer({
+    const validacion = new FeatureLayer({
       url: validarCampo,
       title: "VALIDACION EN CAMPO",
       popupTemplate: {
@@ -283,7 +282,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
           }
         ]
       },
-    }); mapa.add(appmovil);
+    }); mapa.add(validacion);
     //Cargado del mapa
     const view = new MapView({
       container: container,
@@ -340,8 +339,6 @@ export class MapmovilComponent implements OnInit, OnDestroy {
     const distanciaExpand = new Expand({ expandIconClass: "esri-icon-measure-line", view: view, expandTooltip: "MEDIR DISTANCIA", content: distanciaWidget }); view.ui.add(distanciaExpand, { position: "top-right" });
     const areaWidget = new AreaMeasurement2D({ view: view });
     const areaExpand = new Expand({ expandIconClass: "esri-icon-measure-area", view: view, expandTooltip: "MEDIR AREA", content: areaWidget }); view.ui.add(areaExpand, { position: "top-right" });
-
-  
 
     this.vista = view;
     return this.vista.when();
