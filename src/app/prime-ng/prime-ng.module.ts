@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -10,6 +9,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { SidebarModule } from 'primeng/sidebar';
 import { TabViewModule } from 'primeng/tabview';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 
 
@@ -26,9 +26,7 @@ import { TabViewModule } from 'primeng/tabview';
     PanelMenuModule,
     SidebarModule,
     TabViewModule,
-
-
-
+    ProgressSpinnerModule
   ]
 })
 export class PrimeNgModule { }

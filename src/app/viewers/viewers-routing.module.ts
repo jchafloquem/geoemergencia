@@ -20,7 +20,7 @@ const routes: Routes = [
       { path: 'GeoVisorBFH', component: MapbfhComponent },
       { path: 'GeoVisorBPVVRS', component: MapbpvvrsComponent },
       { path: 'Dashboard', component: DashboardComponent },
-      { path: 'consulta', component: ConsultasComponent },
+      { path: 'Consulta', component: ConsultasComponent },
       { path: '', redirectTo: 'GeoVisorMovil', pathMatch: 'full' }
     ]
   }

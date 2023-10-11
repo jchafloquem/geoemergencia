@@ -16,6 +16,7 @@ import ScaleBar from '@arcgis/core/widgets/ScaleBar.js';
 import Search from "@arcgis/core/widgets/Search.js";
 import Zoom from '@arcgis/core/widgets/Zoom.js';
 
+
 @Component({
   selector: 'app-mapmovil',
   templateUrl: './mapmovil.component.html',
@@ -27,23 +28,14 @@ export class MapmovilComponent implements OnInit, OnDestroy {
   initializeMap(): Promise<any> {
     const container = this.mapViewEl.nativeElement;
     const mapa = new Map({ basemap: "satellite" });
-    const validarCampo = 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/Mapa_Validacion/MapServer/1';
+    const buscarFicha = 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/Mapa_Validacion/MapServer/1';
+    const buscardistrito = 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/2';
+    const buscarprovincia = 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/3';
+    const buscardepartamento = 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/4,'
     //Cargado de capas
-    const limDistrito = new FeatureLayer({
-      url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/2",
-      title: 'LIMITE DE DISTRITO',
-      legendEnabled: false
-    }); mapa.add(limDistrito);
-    const limProvincia = new FeatureLayer({
-      url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/3",
-      title: 'LIMITE DE PROVINCIA',
-      legendEnabled: false
-    }); mapa.add(limProvincia);
-    const limDepartamento = new FeatureLayer({
-      url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/4",
-      title: 'LIMITE DE DEPARTAMENTO',
-      legendEnabled: false
-    }); mapa.add(limDepartamento);
+    const limDistrito = new FeatureLayer({ url: buscardistrito, title: 'LIMITE DE DISTRITO', legendEnabled: false }); mapa.add(limDistrito);
+    const limProvincia = new FeatureLayer({ url: buscarprovincia, title: 'LIMITE DE PROVINCIA', legendEnabled: false }); mapa.add(limProvincia);
+    const limDepartamento = new FeatureLayer({ url: buscardepartamento, title: 'LIMITE DE DEPARTAMENTO', legendEnabled: false }); mapa.add(limDepartamento);
     const puebloCofopri = new FeatureLayer({
       url: 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/FORMALIZACION/MapServer/7',
       title: 'LIMITE DE PUEBLO',
@@ -62,7 +54,130 @@ export class MapmovilComponent implements OnInit, OnDestroy {
     const buscarCapas = [
       {
         layer: new FeatureLayer({
-          url: validarCampo,
+          url: buscarFicha,
+        }),
+        searchFields: ["nro_ficha"],
+        displayField: "nro_ficha",
+        exactMatch: false,
+        outFields: ["*"],
+        name: "N° DE FICHA",
+        placeholder: "FICHA: 0001",
+        maxResults: 5,
+        maxSuggestions: 5,
+        suggestionsEnabled: true,
+        minSuggestCharacters: 0,
+        zoomScale: 1000,
+        popupTemplate: {
+          title: "FICHA N°{nro_ficha}",
+          content: [
+            {
+              type: "fields",
+              fieldInfos: [
+                {
+                  fieldName: "estado",
+                  label: "<b><font color='#0C5EA3'>ESTADO DE LA VIVIENDA</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+                {
+                  fieldName: "nombre_departamento",
+                  label: "<b><font color='#0C5EA3'>DEPARTAMENTO</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+                {
+                  fieldName: "nombre_provincia",
+                  label: "<b><font color='#0C5EA3'>PROVINCIA</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+                {
+                  fieldName: "nombre_distrito",
+                  label: "<b><font color='#0C5EA3'>DISTRITO</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+
+                {
+                  fieldName: "direccion",
+                  label: "<b><font color='#0C5EA3'>DIRECCION</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+                {
+                  fieldName: "localidad ",
+                  label: "<b><font color='#0C5EA3'>LOCALIDAD</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+                {
+                  fieldName: "manzana",
+                  label: "<b><font color='#0C5EA3'>MANZANA</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+                {
+                  fieldName: "lote",
+                  label: "<b><font color='#0C5EA3'>LOTE</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+                {
+                  fieldName: "observaciones",
+                  label: "<b><font color='#0C5EA3'>OBSERVACIONES</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+                {
+                  fieldName: "fecha",
+                  label: "<b><font color='#0C5EA3'>FECHA DE VALIDACION</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+                {
+                  fieldName: "longitud",
+                  label: "<b><font color='#0C5EA3'>LONGITUD</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+                {
+                  fieldName: "latitud",
+                  label: "<b><font color='#0C5EA3'>LATITUD</font></b>",
+                  visible: true,
+                  stringFieldOption: "text-box",
+                },
+              ],
+
+            },
+            {
+              type: "media",
+              mediaInfos: [
+                {
+                  type: "image",
+                  value: {
+                    sourceURL: "{foto1}"
+                  }
+                },
+                {
+                  type: "image",
+                  value: {
+                    sourceURL: "{foto2}"
+                  }
+                },
+                {
+                  type: "image",
+                  value: {
+                    sourceURL: "{foto3}"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+      },
+      {
+        layer: new FeatureLayer({
+          url: buscarFicha,
         }),
         searchFields: ["nro_ficha"],
         displayField: "nro_ficha",
@@ -179,7 +294,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
       },
     ]
     const validacion = new FeatureLayer({
-      url: validarCampo,
+      url: buscarFicha,
       title: "VALIDACION EN CAMPO",
       popupTemplate: {
         title: "FICHA N° {nro_ficha}",
@@ -187,6 +302,12 @@ export class MapmovilComponent implements OnInit, OnDestroy {
           {
             type: "fields",
             fieldInfos: [
+              {
+                fieldName: "estado",
+                label: "<b><font color='#0C5EA3'>ESTADO DE LA VIVIENDA</font></b>",
+                visible: true,
+                stringFieldOption: "text-box",
+              },
               {
                 fieldName: "nombre_departamento",
                 label: "<b><font color='#0C5EA3'>DEPARTAMENTO</font></b>",
@@ -297,7 +418,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
     const buscarData = new Search({
       view: view,
       sources: buscarCapas,
-      allPlaceholder: "BUSCAR",
+      allPlaceholder: "BUSQUEDA",
       includeDefaultSources: false,
     }); view.ui.add(buscarData, { position: "top-right" });
     //Boton de Inicio de mapa (1)

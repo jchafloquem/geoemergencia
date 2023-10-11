@@ -12,12 +12,13 @@ import { MaterialModule } from '../material/material.module';
 
 
 
+
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
     LayoutPageComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,
