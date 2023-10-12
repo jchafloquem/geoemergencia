@@ -51,6 +51,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
       title: 'LIMITE DE LOTE',
       legendEnabled: false
     }); mapa.add(lotesCofopri);
+    
     const buscarCapas = [
       {
         layer: new FeatureLayer({
@@ -292,10 +293,52 @@ export class MapmovilComponent implements OnInit, OnDestroy {
           ]
         },
       },
-    ]
+    ];
+
+    const clusterConfig = {
+      type: "cluster",
+      clusterRadius: "100px",
+      // {cluster_count} is an aggregate field containing
+      // the number of features comprised by the cluster
+      popupTemplate: {
+        title: "Cluster summary",
+        content: "This cluster represents {cluster_count} earthquakes.",
+        fieldInfos: [{
+          fieldName: "cluster_count",
+          format: {
+            places: 0,
+            digitSeparator: true
+          }
+        }]
+      },
+      clusterMinSize: "24px",
+      clusterMaxSize: "60px",
+      labelingInfo: [{
+        deconflictionStrategy: "none",
+        labelExpressionInfo: {
+          expression: "Text($feature.cluster_count, '#,###')"
+        },
+        symbol: {
+          type: "text",
+          color: "#004a5d",
+          font: {
+            weight: "bold",
+            family: "Noto Sans",
+            size: "12px"
+          }
+        },
+        labelPlacement: "center-center",
+      }]
+    };
+
+
+
+
     const validacion = new FeatureLayer({
       url: buscarFicha,
       title: "VALIDACION EN CAMPO",
+
+
       popupTemplate: {
         title: "FICHA N° {nro_ficha}",
         content: [
@@ -403,6 +446,8 @@ export class MapmovilComponent implements OnInit, OnDestroy {
           }
         ]
       },
+
+
     }); mapa.add(validacion);
     //Cargado del mapa
     const view = new MapView({
@@ -466,6 +511,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): any {
     this.initializeMap().then(() => { });
+
   }
   ngOnDestroy(): void {
     if (this.vista) {

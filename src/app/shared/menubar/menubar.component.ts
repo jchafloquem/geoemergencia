@@ -45,6 +45,17 @@ export class MenubarComponent {
         ]
       },
       {
+        label: 'DASHBOARD',
+        icon: 'pi pi-fw pi-chart-pie',
+        items: [
+          {
+            label: 'Gestion de Validacion',
+            icon: 'pi pi-fw pi-chart-bar',
+            routerLink: 'Dashboard'
+          },
+        ]
+      },
+      {
         label: 'CONSULTAS',
         icon: 'pi pi-fw pi-search',
         items: [
@@ -62,18 +73,7 @@ export class MenubarComponent {
           },
 
         ]
-      },
-      {
-        label: 'DASHBOARD',
-        icon: 'pi pi-fw pi-chart-pie',
-        items: [
-          {
-            label: 'Gestion de Validacion',
-            icon: 'pi pi-fw pi-chart-bar',
-            routerLink: 'dashboard'
-          },
-        ]
-      },
+      }
     ];
   }
 
