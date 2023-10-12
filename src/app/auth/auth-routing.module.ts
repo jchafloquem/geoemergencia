@@ -1,3 +1,4 @@
+import { Error404Component } from './../shared/error404/error404.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutPageComponent } from './pages/layout-page/layout-page.component';
@@ -12,7 +13,8 @@ const routes: Routes = [
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'home', component: HomeComponent },
-      { path: '**', redirectTo: 'login'}
+      { path: '**', redirectTo: 'login'},
+
     ]
   }
 ];

@@ -11,6 +11,7 @@ import { MapbpvvrsComponent } from './pages/mapbpvvrs/mapbpvvrs.component';
 import { MapmovilComponent } from './pages/mapmovil/mapmovil.component';
 import { SharedModule } from '../shared/shared.module';
 import { MtvComponent } from './pages/mapmtv/mtv.component';
+import { PrimeNgModule } from '../prime-ng/prime-ng.module';
 
 
 
@@ -28,7 +29,8 @@ import { MtvComponent } from './pages/mapmtv/mtv.component';
   imports: [
     CommonModule,
     ViewersRoutingModule,
-    SharedModule
+    SharedModule,
+    PrimeNgModule
   ]
 })
 export class ViewersModule { }

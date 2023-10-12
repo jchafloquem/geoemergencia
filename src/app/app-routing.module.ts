@@ -1,10 +1,12 @@
+import { Error404Component } from './shared/error404/error404.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule )},
   { path: 'viewers', loadChildren: () => import('./viewers/viewers.module').then(m => m.ViewersModule)},
-  { path: '**', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '**', redirectTo: 'Error404Component'}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
