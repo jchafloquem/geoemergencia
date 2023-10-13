@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 //libreria de ArcGIS
+import esri = __esri;
 import AreaMeasurement2D from '@arcgis/core/widgets/AreaMeasurement2D';
 import BasemapGallery from '@arcgis/core/widgets/BasemapGallery.js';
 import CoordinateConversion from '@arcgis/core/widgets/CoordinateConversion.js';
@@ -15,6 +16,7 @@ import MapView from '@arcgis/core/views/MapView.js';
 import ScaleBar from '@arcgis/core/widgets/ScaleBar.js';
 import Search from "@arcgis/core/widgets/Search.js";
 import Zoom from '@arcgis/core/widgets/Zoom.js';
+import FeatureReductionCluster from "@arcgis/core/layers/support/FeatureReductionCluster.js"
 
 
 @Component({
@@ -51,8 +53,9 @@ export class MapmovilComponent implements OnInit, OnDestroy {
       title: 'LIMITE DE LOTE',
       legendEnabled: false
     }); mapa.add(lotesCofopri);
-    
+
     const buscarCapas = [
+      //buscar por ficha
       {
         layer: new FeatureLayer({
           url: buscarFicha,
@@ -176,6 +179,7 @@ export class MapmovilComponent implements OnInit, OnDestroy {
           ]
         },
       },
+      //Buscar por distrito
       {
         layer: new FeatureLayer({
           url: buscarFicha,
@@ -294,51 +298,9 @@ export class MapmovilComponent implements OnInit, OnDestroy {
         },
       },
     ];
-
-    const clusterConfig = {
-      type: "cluster",
-      clusterRadius: "100px",
-      // {cluster_count} is an aggregate field containing
-      // the number of features comprised by the cluster
-      popupTemplate: {
-        title: "Cluster summary",
-        content: "This cluster represents {cluster_count} earthquakes.",
-        fieldInfos: [{
-          fieldName: "cluster_count",
-          format: {
-            places: 0,
-            digitSeparator: true
-          }
-        }]
-      },
-      clusterMinSize: "24px",
-      clusterMaxSize: "60px",
-      labelingInfo: [{
-        deconflictionStrategy: "none",
-        labelExpressionInfo: {
-          expression: "Text($feature.cluster_count, '#,###')"
-        },
-        symbol: {
-          type: "text",
-          color: "#004a5d",
-          font: {
-            weight: "bold",
-            family: "Noto Sans",
-            size: "12px"
-          }
-        },
-        labelPlacement: "center-center",
-      }]
-    };
-
-
-
-
     const validacion = new FeatureLayer({
       url: buscarFicha,
       title: "VALIDACION EN CAMPO",
-
-
       popupTemplate: {
         title: "FICHA N° {nro_ficha}",
         content: [
@@ -448,7 +410,12 @@ export class MapmovilComponent implements OnInit, OnDestroy {
       },
 
 
-    }); mapa.add(validacion);
+    });
+    const featureReduction = new FeatureReductionCluster({
+      clusterRadius: 50, // Radio de agrupación en píxeles
+      clusterMinSize: 25, // Tamaño mínimo de agrupación
+    }); validacion.featureReduction = featureReduction; mapa.add(validacion);
+
     //Cargado del mapa
     const view = new MapView({
       container: container,
@@ -508,10 +475,10 @@ export class MapmovilComponent implements OnInit, OnDestroy {
 
     this.vista = view;
     return this.vista.when();
+
   }
   ngOnInit(): any {
     this.initializeMap().then(() => { });
-
   }
   ngOnDestroy(): void {
     if (this.vista) {
