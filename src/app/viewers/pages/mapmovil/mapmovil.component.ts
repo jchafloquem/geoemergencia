@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 //libreria de ArcGIS
-import esri = __esri;
 import AreaMeasurement2D from '@arcgis/core/widgets/AreaMeasurement2D';
 import BasemapGallery from '@arcgis/core/widgets/BasemapGallery.js';
 import CoordinateConversion from '@arcgis/core/widgets/CoordinateConversion.js';
@@ -17,7 +16,6 @@ import ScaleBar from '@arcgis/core/widgets/ScaleBar.js';
 import Search from "@arcgis/core/widgets/Search.js";
 import Zoom from '@arcgis/core/widgets/Zoom.js';
 import FeatureReductionCluster from "@arcgis/core/layers/support/FeatureReductionCluster.js"
-
 
 @Component({
   selector: 'app-mapmovil',
@@ -53,7 +51,6 @@ export class MapmovilComponent implements OnInit, OnDestroy {
       title: 'LIMITE DE LOTE',
       legendEnabled: false
     }); mapa.add(lotesCofopri);
-
     const buscarCapas = [
       //buscar por ficha
       {
@@ -472,10 +469,8 @@ export class MapmovilComponent implements OnInit, OnDestroy {
     const distanciaExpand = new Expand({ expandIconClass: "esri-icon-measure-line", view: view, expandTooltip: "MEDIR DISTANCIA", content: distanciaWidget }); view.ui.add(distanciaExpand, { position: "top-right" });
     const areaWidget = new AreaMeasurement2D({ view: view });
     const areaExpand = new Expand({ expandIconClass: "esri-icon-measure-area", view: view, expandTooltip: "MEDIR AREA", content: areaWidget }); view.ui.add(areaExpand, { position: "top-right" });
-
     this.vista = view;
     return this.vista.when();
-
   }
   ngOnInit(): any {
     this.initializeMap().then(() => { });

@@ -12,6 +12,7 @@ import { MapmovilComponent } from './pages/mapmovil/mapmovil.component';
 import { SharedModule } from '../shared/shared.module';
 import { MtvComponent } from './pages/mapmtv/mtv.component';
 import { PrimeNgModule } from '../prime-ng/prime-ng.module';
+import { Dashboard1Component } from './pages/dashboard1/dashboard1.component';
 
 
 
@@ -24,7 +25,8 @@ import { PrimeNgModule } from '../prime-ng/prime-ng.module';
     MapbfhComponent,
     MapbpvvrsComponent,
     MapmovilComponent,
-    MtvComponent
+    MtvComponent,
+    Dashboard1Component
   ],
   imports: [
     CommonModule,

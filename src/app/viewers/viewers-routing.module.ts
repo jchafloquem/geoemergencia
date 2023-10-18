@@ -8,6 +8,7 @@ import { MapbpvvrsComponent } from './pages/mapbpvvrs/mapbpvvrs.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ConsultasComponent } from './pages/consultas/consultas.component';
 import { MtvComponent } from './pages/mapmtv/mtv.component';
+import { Dashboard1Component } from './pages/dashboard1/dashboard1.component';
 
 
 const routes: Routes = [
@@ -19,8 +20,8 @@ const routes: Routes = [
       { path: 'GeoVisorBAE', component: MapbaeComponent },
       { path: 'GeoVisorBFH', component: MapbfhComponent },
       { path: 'GeoVisorBPVVRS', component: MapbpvvrsComponent },
-      { path: 'Dashboard', component: DashboardComponent },
-      { path: 'Consulta', component: ConsultasComponent },
+      { path: 'DashboardValidacion', component: Dashboard1Component },
+      { path: 'DashboardCobros', component: DashboardComponent },
       { path: '', redirectTo: 'GeoVisorMovil', pathMatch: 'full' }
     ]
   }

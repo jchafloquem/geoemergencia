@@ -22,14 +22,14 @@ export class MenubarComponent {
             routerLink: 'GeoVisorMovil'
           },
           {
-            label: 'Modulos Temporales de Vivienda',
-            icon: 'pi pi-fw pi-map-marker',
-            routerLink: 'GeoVisorMTV'
-          },
-          {
             label: 'Bono de Atencion de Emergencias (BAE)',
             icon: 'pi pi-fw pi-map-marker',
             routerLink: 'GeoVisorBAE'
+          },
+          {
+            label: 'Modulos Temporales de Vivienda',
+            icon: 'pi pi-fw pi-map-marker',
+            routerLink: 'GeoVisorMTV'
           },
           {
             label: 'Bono Familiar Habitacional (BFH)',
@@ -49,31 +49,18 @@ export class MenubarComponent {
         icon: 'pi pi-fw pi-chart-pie',
         items: [
           {
-            label: 'Gestion de Validacion',
+            label: 'Tablero de datos - Validacion',
             icon: 'pi pi-fw pi-chart-bar',
-            routerLink: 'Dashboard'
+            routerLink: 'DashboardValidacion'
+          },
+          {
+            label: 'Tablero de datos - Cobro - BAE',
+            icon: 'pi pi-fw pi-chart-bar',
+            routerLink: 'DashboardCobros'
           },
         ]
       },
-      {
-        label: 'CONSULTAS',
-        icon: 'pi pi-fw pi-search',
-        items: [
-          {
-            label: 'Beneficiarios Bono de Atencion de Emergencias (BAE)',
-            icon: 'pi pi-fw pi-search'
-          },
-          {
-            label: 'Beneficiarios Bono Familiar Habitacional (BFH)',
-            icon: 'pi pi-fw pi-search'
-          },
-          {
-            label: 'Beneficiarios Bono Proteccion de Viviendas Vulnerables a los Riesgos Sismicos (BPVVRS)',
-            icon: 'pi pi-fw pi-search'
-          },
 
-        ]
-      }
     ];
   }
 
