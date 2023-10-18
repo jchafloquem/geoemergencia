@@ -39,29 +39,27 @@ export class MapbpvvrsComponent implements OnInit, OnDestroy {
     //Cargado de capas
     const limDistrito = new FeatureLayer({
       url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/2",
-      title: 'LIMITE DE DISTRITO'
+      title: 'LIMITE DE DISTRITO',
+      legendEnabled: false
     }); mapa.add(limDistrito);
     const limProvincia = new FeatureLayer({
       url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/3",
-      title: 'LIMITE DE PROVINCIA'
+      title: 'LIMITE DE PROVINCIA',
+      legendEnabled: false
     }); mapa.add(limProvincia);
     const limDepartamento = new FeatureLayer({
       url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/4",
       title: 'LIMITE DE DEPARTAMENTO',
+      legendEnabled: false
     }); mapa.add(limDepartamento);
     const estudiosMicroZonificacion = new FeatureLayer({
-      url: 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/PNC/ESTUDIOS_DE_MICROZONIFICACION_SISMICA/MapServer/1',
+      url: 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/1_Seguimiento_Monitoreo/MapServer/13',
       title:'Estudios de Microzonificacion Sismica'
     }); mapa.add(estudiosMicroZonificacion);
     const obraculminada = new FeatureLayer({
       url: 'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/1_Seguimiento_Monitoreo/MapServer/0',
       title:'Obras Culminadas'
     }); mapa.add(obraculminada);
-
-    
-
-
-
 
     //Cargado del mapa
     const view = new MapView({
@@ -102,7 +100,13 @@ export class MapbpvvrsComponent implements OnInit, OnDestroy {
     //Funcion de escala
     const scaleBarra = new ScaleBar({ view: view, unit: 'dual' }); view.ui.add(scaleBarra, { position: 'bottom-left' });
     //Control de capas
-    const controlCapas = new LayerList({ view: view }); view.ui.add(controlCapas, { position: 'top-left' });
+    const controlCapas = new LayerList({ view: view });
+    const capasExpand = new Expand({
+      expandIconClass: 'esri-icon-layers',
+      view: view,
+      expandTooltip: 'CAPAS',
+      content: controlCapas,
+    }); view.ui.add(capasExpand, { position: 'top-left' });
     this.vista = view;
     return this.vista.when();
   }

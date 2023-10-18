@@ -34,24 +34,27 @@ export class MtvComponent implements OnInit, OnDestroy{
     const mapa = new Map({
       basemap: "satellite",
     });
-
     //Cargado de capas
-    const limDistrito = new FeatureLayer({
-      url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/2",
-      title: 'LIMITE DE DISTRITO'
-    }); mapa.add(limDistrito);
-    const mtvCovid = new FeatureLayer({
-      url:'https://dportalgis.vivienda.gob.pe/dfdserver/rest/services/DGPPVU/MAPA_MTV_COVID19/MapServer/1',
-      title:'Modulos COVID'
-    }); mapa.add(mtvCovid);
-    const limProvincia = new FeatureLayer({
-      url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/3",
-      title: 'LIMITE DE PROVINCIA'
-    }); mapa.add(limProvincia);
     const limDepartamento = new FeatureLayer({
       url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/4",
       title: 'LIMITE DE DEPARTAMENTO',
+      legendEnabled: false
     }); mapa.add(limDepartamento);
+    const limProvincia = new FeatureLayer({
+      url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/3",
+      title: 'LIMITE DE PROVINCIA',
+      legendEnabled: false
+    }); mapa.add(limProvincia);
+    const limDistrito = new FeatureLayer({
+      url: "https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/LIMITES_POLITICOS/MapServer/2",
+      title: 'LIMITE DE DISTRITO',
+      legendEnabled: false
+    }); mapa.add(limDistrito);
+
+    const mtvCovid = new FeatureLayer({
+      url:'https://dportalgis.vivienda.gob.pe/dhtserver/rest/services/DGPPVU/M%C3%B3dulos_Temporales_COVID/MapServer/0',
+      title:'MODULOS TEMPORALES DE VIVIENDA - COVID'
+    }); mapa.add(mtvCovid);
 
 
     //Cargado del mapa
@@ -90,10 +93,17 @@ export class MtvComponent implements OnInit, OnDestroy{
     }); view.ui.add(leyendaExpand, { position: 'bottom-trailing' });
     //Funcion de coordenadas
     const ccoordenadas = new CoordinateConversion({ view: view }); view.ui.add(ccoordenadas, { position: 'bottom-left' });
+    const coordexpand = new Expand ({})
     //Funcion de escala
     const scaleBarra = new ScaleBar({ view: view, unit: 'dual' }); view.ui.add(scaleBarra, { position: 'bottom-left' });
     //Control de capas
-    const controlCapas = new LayerList({ view: view }); view.ui.add(controlCapas, { position: 'top-left' });
+    const controlCapas = new LayerList({ view: view });
+    const capasExpand = new Expand({
+      expandIconClass: 'esri-icon-layers',
+      view: view,
+      expandTooltip: 'CAPAS',
+      content: controlCapas,
+    }); view.ui.add(capasExpand, { position: 'top-left' });
     this.vista = view;
     return this.vista.when();
   }
